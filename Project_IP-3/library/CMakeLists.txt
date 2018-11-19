@@ -7,6 +7,7 @@ set(SOURCE_FILES
     include/Core/Error.h
     include/ImageProcesser.h
     include/HistogramProcesser.h
+	include/MorphologicalProcesser.h
     src/Core/ArgumentsHandler.cpp
     src/Core/Error.cpp
     src/Core/Processer.cpp
@@ -21,7 +22,7 @@ set(SOURCE_FILES
     src/ImageProcesser/HelperMethods.cpp
     src/ImageProcesser/ImageAnalyzers.cpp
     src/ImageProcesser/ImageFilters.cpp
-
+	src/MorphologicalOperations/MorphologicalProcesser.cpp
 )
 
 add_library(Library ${SOURCE_FILES})

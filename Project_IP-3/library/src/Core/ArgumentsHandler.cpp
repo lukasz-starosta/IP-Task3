@@ -16,7 +16,7 @@ ArgumentsHandler::~ArgumentsHandler()
 
 int ArgumentsHandler::convertToInt(std::string option) const
 {
-	for (int i = 0; i < 29; i++)
+	for (int i = 0; i < 36; i++)
 	{
 		if (options[i] == option) return i;
 	}
@@ -79,6 +79,7 @@ bool ArgumentsHandler::valueIsValid(string value) const
 	if (option == "--hpower" && !isWithinPixelRange(stoi(value))) return false;
 	if (option == "--sedgesharp" && stoi(value) > 3) return false;
 	if (option == "--orosenfeld" && (stoi(value) <= 0 || !isPowerOfTwo(stoi(value)))) return false;
+	if ((option == "--dilation" || option == "--erosion" || option == "--opening" || option == "--closing") && stoi(value) > 9) return false;
 
 	return true;
 }
@@ -352,6 +353,7 @@ ArgumentsHandler::Processers ArgumentsHandler::get_currentProcesser() const
 	int currentOption = convertToInt(option);
 	if (currentOption < 17) return Processers::ImageProcesser;
 	if (currentOption < 29) return Processers::HistogramProcesser;
+	if (currentOption < 34) return Processers::MorphologicalProcesser;
 	return Processers::None;
 }
 

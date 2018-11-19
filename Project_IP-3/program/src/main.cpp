@@ -2,6 +2,7 @@
 #include "ArgumentsHandler.h"
 #include "ImageProcesser.h"
 #include "HistogramProcesser.h"
+#include "MorphologicalProcesser.h"
 
 using namespace std;
 
@@ -29,6 +30,14 @@ int main(int argc, char* argv[])
 			HistogramProcesser.processImage();
 			break;
 		}
+
+		case ArgumentsHandler::Processers::MorphologicalProcesser:
+		{
+			MorphologicalProcesser MorphologicalProcesser(arguments.imageName, arguments.option, (int)arguments.value);
+			MorphologicalProcesser.processImage();
+			break;
+		}
+
 		default:
 			return 0;
 	}

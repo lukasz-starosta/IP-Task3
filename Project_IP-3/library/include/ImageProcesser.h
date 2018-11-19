@@ -6,7 +6,7 @@
 class ImageProcesser : public Processer
 {
 private:
-	enum options
+	enum Options
 	{
 		brightness = 1, contrast, negative, hflip, vflip, dflip, shrink, enlarge, min, max, median, mse, pmse, snr, psnr, md
 	};

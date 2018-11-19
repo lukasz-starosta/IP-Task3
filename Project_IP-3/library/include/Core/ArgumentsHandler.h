@@ -14,15 +14,17 @@ private:
 	std::string noisyImageName;
 	std::string denoisedImageName;
 
-	std::string options[29]{
+	std::string options[36]{
 		//Task 1 options (17 options) <0, 16>
 		"--help", "--brightness", "--contrast", "--negative", "--hflip", "--vflip", "--dflip", "--shrink", "--enlarge", "--min", "--max", "--median", "--mse", "--pmse", "--snr", "--psnr", "--md",
 		//Task 2 options (9 options) <17, 28>
-		"--histogram", "--hpower", "--cmean", "--cvariance", "--cstdev", "--cvarcoi", "--casyco", "--cflatco", "--cvarcoii", "--centropy", "--sedgesharp", "--orosenfeld"
+		"--histogram", "--hpower", "--cmean", "--cvariance", "--cstdev", "--cvarcoi", "--casyco", "--cflatco", "--cvarcoii", "--centropy", "--sedgesharp", "--orosenfeld",
+		//Task 3 options (7 options) <29, 35>
+		"--dilation", "--erosion", "--opening", "--closing", "--hmt", "--mvariant", "--merging"
 	};
 
-	std::string optionsRequiringValues[19]{
-		"--brightness", "--contrast", "--shrink", "--enlarge", "--min", "--max", "--median", "--histogram", "--cmean", "--cvariance", "--cstdev", "--cvarcoi", "--casyco", "--cflatco", "--cvarcoii", "--centropy", "--hpower", "--sedgesharp", "--orosenfeld"
+	std::string optionsRequiringValues[24]{
+		"--brightness", "--contrast", "--shrink", "--enlarge", "--min", "--max", "--median", "--histogram", "--cmean", "--cvariance", "--cstdev", "--cvarcoi", "--casyco", "--cflatco", "--cvarcoii", "--centropy", "--hpower", "--sedgesharp", "--orosenfeld", "--dilation", "--erosion", "--opening", "--closing", "--hmt"
 	};
 
 	std::string optionsRequiringChannel[9]{
@@ -45,7 +47,8 @@ public:
 	{
 		None = 0,
 		ImageProcesser,
-		HistogramProcesser
+		HistogramProcesser,
+		MorphologicalProcesser,
 	};
 
 	struct Arguments
