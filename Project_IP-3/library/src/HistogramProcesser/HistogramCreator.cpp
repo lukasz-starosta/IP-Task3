@@ -23,7 +23,7 @@ void HistogramProcesser::createHistogram(int channel)
 
 	for (unsigned int x = 0; x < 256; x++)
 	{
-		for (unsigned int y = histogramMaxHeight - 1; y > histogramMaxHeight - histogramHeight[channel][x]; y--)
+		for (int y = histogramMaxHeight - 1; y > histogramMaxHeight - histogramHeight[channel][x]; y--)
 		{
 			histogramImage(x, y, channel) = 255;
 		}

@@ -55,10 +55,10 @@ void ImageProcesser::processImage()
 	switch (option)
 	{
 	case brightness:
-		changeBrightness(value);
+		changeBrightness((int)value);
 		break;
 	case contrast:
-		changeContrast(value);
+		changeContrast((int)value);
 		break;
 	case negative:
 		changeToNegative();
@@ -79,13 +79,13 @@ void ImageProcesser::processImage()
 		enlargeImage(value);
 		break;
 	case min:
-		minFilter(value);
+		minFilter((int)value);
 		break;
 	case max:
-		maxFilter(value);
+		maxFilter((int)value);
 		break;
 	case median:
-		medianFilter(value);
+		medianFilter((int)value);
 		break;
 	case mse:
 		calculateMSE();
