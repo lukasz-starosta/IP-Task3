@@ -57,7 +57,7 @@ private:
 		}};
 
 	void printBasicStructuringElements();
-
+	void performDilation();
 public:
 	MorphologicalProcesser(std::string imageName, int option, int structuringElementVariant);
 	~MorphologicalProcesser();

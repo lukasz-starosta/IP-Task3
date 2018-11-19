@@ -55,6 +55,7 @@ void MorphologicalProcesser::processImage()
 	switch (option)
 	{
 		case dilation:
+			performDilation();
 			break;
 		case erosion:
 			break;
@@ -66,4 +67,6 @@ void MorphologicalProcesser::processImage()
 			break;
 		default: break;
 	}
+
+	image.display("Morphology preview", false);
 }

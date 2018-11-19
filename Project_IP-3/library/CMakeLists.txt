@@ -23,6 +23,7 @@ set(SOURCE_FILES
     src/ImageProcesser/ImageAnalyzers.cpp
     src/ImageProcesser/ImageFilters.cpp
 	src/MorphologicalOperations/MorphologicalProcesser.cpp
+	src/MorphologicalOperations/MorphologicalOperations.cpp
 )
 
 add_library(Library ${SOURCE_FILES})
