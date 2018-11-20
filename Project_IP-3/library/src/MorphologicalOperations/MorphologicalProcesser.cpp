@@ -20,11 +20,11 @@ void MorphologicalProcesser::printBasicStructuringElements()
 	cout << endl;
 	for (int i = 0; i < 10; i++)
 	{
-		for (int x = 0; x < 3; x++)
+		for (int y = 0; y < 3; y++)
 		{
-			for (int y = 0; y < 3; y++)
+			for (int x = 0; x < 3; x++)
 			{
-				cout << basicStructuringElements[i][x][y] << " ";
+				cout << basicStructuringElements[i][y][x] << " ";
 			}
 			cout << endl;
 		}
@@ -47,7 +47,7 @@ void MorphologicalProcesser::processImage()
 	}
 
 	if (!initialImage) return;
-
+	
 	image = initialImage;
 	height = image.height();
 	width = image.width();
