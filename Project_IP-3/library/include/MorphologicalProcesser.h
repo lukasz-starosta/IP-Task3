@@ -11,7 +11,7 @@ private:
 	};
 
 	const unsigned char COLOR_BLACK = 0;
-	const unsigned char COLOR_WHITE = 255;
+	const unsigned char COLOR_WHITE = (unsigned char)255;
 
 	int structuringElementVariant = (int)value;
 
@@ -61,6 +61,7 @@ private:
 
 	void printBasicStructuringElements();
 	void performDilation();
+	void performErosion();
 
 public:
 	MorphologicalProcesser(std::string imageName, int option, int structuringElementVariant);
