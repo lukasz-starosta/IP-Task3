@@ -58,6 +58,7 @@ void MorphologicalProcesser::processImage()
 			performDilation();
 			break;
 		case erosion:
+			performErosion();
 			break;
 		case opening:
 			break;
@@ -69,4 +70,5 @@ void MorphologicalProcesser::processImage()
 	}
 
 	image.display("Morphology preview", false);
+	image.save("morphology.bmp");
 }

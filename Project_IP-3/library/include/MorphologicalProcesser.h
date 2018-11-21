@@ -11,7 +11,7 @@ private:
 	};
 
 	const unsigned char COLOR_BLACK = 0;
-	const unsigned char COLOR_WHITE = 255;
+	const unsigned char COLOR_WHITE = (unsigned char)255;
 
 	int structuringElementVariant = (int)value;
 
@@ -61,6 +61,22 @@ private:
 
 	void printBasicStructuringElements();
 	void performDilation();
+	void performErosion();
+
+	struct Window
+	{
+		short int x0;
+		short int x1;
+		short int y0;
+		short int y1;
+
+		// If the window is at (0,0) we want only some of the pixels taken from the variant - (1, 1), (1, 2), (2, 1), (2, 2). thus the window modifier
+		unsigned short int modifier_x;
+		unsigned short int modifier_y;
+
+		unsigned short int iterator_x;
+		unsigned short int iterator_y;
+	};
 
 public:
 	MorphologicalProcesser(std::string imageName, int option, int structuringElementVariant);
