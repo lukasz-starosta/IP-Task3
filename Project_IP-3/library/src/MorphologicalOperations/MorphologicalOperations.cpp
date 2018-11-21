@@ -13,7 +13,7 @@ void MorphologicalProcesser::performDilation()
 		{
 			if (image(x, y, 0) != COLOR_BLACK)
 			{
-				break;
+				continue;
 			}
 
 			for (window_y = 0; window_y < 3; window_y++)
