@@ -10,7 +10,10 @@ private:
 		dilation = 29, erosion, opening, closing, hmt
 	};
 
-	int structuringElementVariant;
+	const unsigned char COLOR_BLACK = 0;
+	const unsigned char COLOR_WHITE = 255;
+
+	int structuringElementVariant = (int)value;
 
 	// Does not involve the elements from xi up
 	const unsigned int basicStructuringElements[10][3][3] = {
@@ -57,6 +60,7 @@ private:
 		}};
 
 	void printBasicStructuringElements();
+	void performDilation();
 
 public:
 	MorphologicalProcesser(std::string imageName, int option, int structuringElementVariant);
