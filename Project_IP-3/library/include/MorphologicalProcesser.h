@@ -63,6 +63,10 @@ private:
 	void performDilation();
 	void performErosion();
 
+
+	// Methods developed initially with the Window (they produced different results than these, which were presented on the lectures)
+	void performDilationWithWindow();
+	void performErosionWithWindow();
 	struct Window
 	{
 		short int x0;
