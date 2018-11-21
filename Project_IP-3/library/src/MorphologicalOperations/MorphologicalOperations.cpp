@@ -5,21 +5,6 @@ void MorphologicalProcesser::performDilation()
 
 	cimg_library::CImg<unsigned char> imageCopy = image;
 
-	struct Window
-	{
-		short int x0;
-		short int x1;
-		short int y0;
-		short int y1;
-
-		// If the window is at (0,0) we want only some of the pixels taken from the variant - (1, 1), (1, 2), (2, 1), (2, 2). thus the window modifier
-		unsigned short int modifier_x;
-		unsigned short int modifier_y;
-
-		unsigned short int iterator_x;
-		unsigned short int iterator_y;
-	};
-
 	Window window;
 
 	for (unsigned short int x = 0; x < width; x++)
@@ -84,21 +69,6 @@ void MorphologicalProcesser::performDilation()
 void MorphologicalProcesser::performErosion()
 {
 	cimg_library::CImg<unsigned char> imageCopy = image;
-
-	struct Window
-	{
-		short int x0;
-		short int x1;
-		short int y0;
-		short int y1;
-
-		// If the window is at (0,0) we want only some of the pixels taken from the variant - (1, 1), (1, 2), (2, 1), (2, 2). thus the window modifier
-		unsigned short int modifier_x;
-		unsigned short int modifier_y;
-
-		unsigned short int iterator_x;
-		unsigned short int iterator_y;
-	};
 
 	Window window;
 
