@@ -61,8 +61,10 @@ void MorphologicalProcesser::processImage()
 			performErosion();
 			break;
 		case opening:
+			performOpening();
 			break;
 		case closing:
+			performClosing();
 			break;
 		case hmt:
 			break;

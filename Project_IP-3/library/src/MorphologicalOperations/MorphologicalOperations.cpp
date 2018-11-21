@@ -46,11 +46,12 @@ void MorphologicalProcesser::performErosion()
 	unsigned short int window_x;
 	unsigned short int window_y;
 
-	for (unsigned short int x = 1; x < width - 1; x++)
+	for (unsigned short int x = 0; x < width; x++)
 	{
-		for (unsigned short int y = 1; y < height - 1; y++)
+		for (unsigned short int y = 0; y < height; y++)
 		{
 			bool isFullyContained = true;
+
 			for (window_y = 0; window_y < 3; window_y++)
 			{
 				for (window_x = 0; window_x < 3; window_x++)
@@ -62,9 +63,13 @@ void MorphologicalProcesser::performErosion()
 					{
 						// The -1 is because when we're at (x, y) we consider the window starting from coordinates (x-1, y-1) and ending at coordinates (x+1, y+1)
 						short int pixelPosition_x = x - 1 + window_x;
-						short int pixelPosition_y = y - 1 + window_y;
+						if (pixelPosition_x < 0 || pixelPosition_x > width - 1)
+						{
+							isFullyContained = false;
+						}
 
-						if (image(pixelPosition_x, pixelPosition_y, 0) != COLOR_BLACK)
+						short int pixelPosition_y = y - 1 + window_y;
+						if ((pixelPosition_y < 0 || pixelPosition_y > height - 1) || image(pixelPosition_x, pixelPosition_y, 0) != COLOR_BLACK)
 						{
 							isFullyContained = false;
 						}
@@ -86,6 +91,22 @@ void MorphologicalProcesser::performErosion()
 
 	image = imageCopy;
 }
+
+void MorphologicalProcesser::performOpening()
+{
+	performErosion();
+	performDilation();
+}
+
+void MorphologicalProcesser::performClosing()
+{
+	performDilation();
+	performErosion();
+}
+
+
+///////////////////////////////
+
 
 /*
  *This method can be used instead of the simpler dilation - it introduces a window
