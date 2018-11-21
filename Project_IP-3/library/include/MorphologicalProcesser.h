@@ -62,7 +62,8 @@ private:
 	void printBasicStructuringElements();
 	void performDilation();
 	void performErosion();
-
+	void performOpening();
+	void performClosing();
 
 	// Methods developed initially with the Window (they produced different results than these, which were presented on the lectures)
 	void performDilationWithWindow();
