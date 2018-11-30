@@ -23,8 +23,8 @@ private:
 		"--dilation", "--erosion", "--opening", "--closing", "--hmt", "--mvariant", "--merging"
 	};
 
-	std::string optionsRequiringValues[24]{
-		"--brightness", "--contrast", "--shrink", "--enlarge", "--min", "--max", "--median", "--histogram", "--cmean", "--cvariance", "--cstdev", "--cvarcoi", "--casyco", "--cflatco", "--cvarcoii", "--centropy", "--hpower", "--sedgesharp", "--orosenfeld", "--dilation", "--erosion", "--opening", "--closing", "--hmt"
+	std::string optionsRequiringValues[25]{
+		"--brightness", "--contrast", "--shrink", "--enlarge", "--min", "--max", "--median", "--histogram", "--cmean", "--cvariance", "--cstdev", "--cvarcoi", "--casyco", "--cflatco", "--cvarcoii", "--centropy", "--hpower", "--sedgesharp", "--orosenfeld", "--dilation", "--erosion", "--opening", "--closing", "--hmt", "--merging"
 	};
 
 	std::string optionsRequiringChannel[9]{
