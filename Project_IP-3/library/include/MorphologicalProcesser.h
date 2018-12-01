@@ -1,6 +1,7 @@
 #pragma once
 #include "Processer.h"
 #include <string>
+#include <vector>
 
 class MorphologicalProcesser : public Processer
 {
@@ -27,14 +28,16 @@ private:
 
 	struct Coordinates
 	{
-		short int x;
-		short int y;
+		int x;
+		int y;
 	};
 
 	const unsigned char COLOR_BLACK = 0;
 	const unsigned char COLOR_WHITE = (unsigned char)255;
 
 	int structuringElementVariant = (int)value;
+
+	cimg_library::CImg<unsigned char> imageCopy;
 
 	// Does not involve the elements from xi up
 	const unsigned int basicStructuringElements[10][3][3] = {
@@ -88,6 +91,16 @@ private:
 	void performOpening();
 	void performClosing();
 	void performMerging(int seed_x, int seed_y, int threshold);
+
+	//Helper methods
+	double getEuclideanDistance(int r1, int g1, int b1, int r2, int b2, int g2);
+	bool isInRegion(int x, int y);
+	bool isPixelWithinThreshold(int x1, int y1, int x2, int y2, int threshold);
+	void colorRed(int x, int y);
+	void mergePixels(int x, int y, int seed_x, int seed_y, int threshold);
+
+	std::vector<Coordinates> getSurroundingPixels(int x, int y, int seedX, int seedY, int threshold);
+
 
 	// Methods developed initially with the Window (they produced different results than these, which were presented on the lectures)
 	void performDilationWithWindow();
