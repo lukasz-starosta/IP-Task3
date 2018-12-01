@@ -83,6 +83,73 @@ private:
 			{0, 0, 0}
 		}};
 
+
+	//-1 deontes inactive element
+	const int hmtStructuringElements[12][3][3] = {
+		//xi
+		{
+			{1, -1, -1},
+			{1, 0, -1},
+			{1, -1, -1}
+		},
+		{
+			{1, 1, 1},
+			{-1, 0, -1},
+			{-1, -1, -1}
+		},
+		{
+			{-1, -1, 1},
+			{-1, 0, 1},
+			{-1, -1, 1}
+		},
+		{
+			{-1, -1, -1},
+			{-1, 0, -1},
+			{1, 1, 1}
+		},
+		//xii
+		{
+			{0, 0, 0},
+			{-1, 1, -1},
+			{1, 1, 1}
+		},
+		{
+			{-1, 0, 0},
+			{1, 1, 0},
+			{1, 1, -1}
+		},
+		{
+			{1, -1, 0},
+			{1, 1, 0},
+			{1, -1, 0}
+		},
+		{
+			{1, 1, -1},
+			{1, 1, 0},
+			{-1, 0, 0}
+		},
+		{
+			{1, 1, 1},
+			{-1, 1, -1},
+			{0, 0, 0}
+		},
+		{
+			{-1, 1, 1},
+			{0, 1, 1},
+			{0, 0, -1}
+		},
+		{
+			{0, -1, 1},
+			{0, 1, 1},
+			{0, -1, 1}
+		},
+		{
+			{0, 0, -1},
+			{0, 1, 1},
+			{-1, 1, 1}
+		}
+	};
+
 	void printBasicStructuringElements();
 	Coordinates getSeedCoordinates();
 
@@ -90,6 +157,12 @@ private:
 	void performErosion();
 	void performOpening();
 	void performClosing();
+	void performHitOrMiss();
+	void blacken();
+	void complement();
+	void intersection(cimg_library::CImg<unsigned char> reference);
+	bool checkEquality();
+	void performM5(bool controlRun);
 	void performMerging(unsigned short int seed_x, unsigned short int seed_y, int threshold);
 
 	//Helper methods
