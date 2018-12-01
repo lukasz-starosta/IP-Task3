@@ -88,8 +88,10 @@ void MorphologicalProcesser::processImage()
 			performClosing();
 			break;
 		case hmt:
+			performHitOrMiss();
 			break;
 		case mvariant:
+			performM5(false);
 			break;
 		case merging:
 
@@ -109,7 +111,8 @@ void MorphologicalProcesser::processImage()
 			}
 
 			break;
-		default: break;
+		default: 
+			break;
 	}
 
 	image.display("Result preview", false);
