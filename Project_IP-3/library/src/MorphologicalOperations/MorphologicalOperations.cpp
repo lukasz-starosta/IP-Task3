@@ -158,6 +158,7 @@ void MorphologicalProcesser::performHitOrMiss()
 	image = result;
 }
 
+//Used to leave only pixels marked by HMT (gets rid of background left by HMT for better result showcase)
 void MorphologicalProcesser::blacken()
 {
 	for (unsigned int x = 0; x < width; x++)
@@ -210,6 +211,7 @@ void MorphologicalProcesser::intersection(cimg_library::CImg<unsigned char> refe
 	}
 }
 
+//Used to check if M5 should stop performing as there are no possible changes to be made
 bool MorphologicalProcesser::checkEquality()
 {
 	cimg_library::CImg<unsigned char> reference = image;
@@ -231,6 +233,7 @@ bool MorphologicalProcesser::checkEquality()
 	return true;
 }
 
+//controlRun is used to denote if call of performM5 is for the purpose of checking if it should stop performing operations on the image or a normal run
 void MorphologicalProcesser::performM5(bool controlRun)
 {
 	cimg_library::CImg<unsigned char> reference;
