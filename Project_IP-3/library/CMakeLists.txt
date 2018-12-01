@@ -24,6 +24,7 @@ set(SOURCE_FILES
     src/ImageProcesser/ImageFilters.cpp
 	src/MorphologicalOperations/MorphologicalProcesser.cpp
 	src/MorphologicalOperations/MorphologicalOperations.cpp
+	src/MorphologicalOperations/RegionMerging.cpp
 )
 
 add_library(Library ${SOURCE_FILES})

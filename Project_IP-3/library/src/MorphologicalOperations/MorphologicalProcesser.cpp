@@ -1,12 +1,10 @@
 #include <MorphologicalProcesser.h>
-
-// Temporary includes
 #include <iostream>
 
 using namespace std;
 
-MorphologicalProcesser::MorphologicalProcesser(string imageName, int option, int structuringElementVariant)
-	: Processer(imageName, option, structuringElementVariant)
+MorphologicalProcesser::MorphologicalProcesser(string imageName, int option, double value)
+	: Processer(imageName, option, value)
 {
 }
 
@@ -33,6 +31,29 @@ void MorphologicalProcesser::printBasicStructuringElements()
 	}
 }
 
+
+// Used to get the coordinates of the seed element
+MorphologicalProcesser::Coordinates MorphologicalProcesser::getSeedCoordinates()
+{
+	cimg_library::CImgDisplay display(image, "Choose the seed pixel");
+	Coordinates coordinates;
+
+	// Used to check whether the display was not closed without choosing the pixel
+	coordinates.x = -1;
+	while (!display.is_closed())
+	{
+		display.wait();
+		// Left mouse button
+		if (display.button() & 1 && display.mouse_x() >= 0 && display.mouse_y() >= 0)
+		{
+			coordinates.x = (unsigned short int)display.mouse_x();
+			coordinates.y = (unsigned short int)display.mouse_y();
+			display.close();
+		}
+	}
+	return coordinates;
+}
+
 void MorphologicalProcesser::processImage()
 {
 	cimg_library::CImg<unsigned char> initialImage;
@@ -47,7 +68,7 @@ void MorphologicalProcesser::processImage()
 	}
 
 	if (!initialImage) return;
-	
+
 	image = initialImage;
 	height = image.height();
 	width = image.width();
@@ -68,9 +89,29 @@ void MorphologicalProcesser::processImage()
 			break;
 		case hmt:
 			break;
+		case mvariant:
+			break;
+		case merging:
+
+			cout << endl << "Please choose the seed pixel from the window." << endl;
+
+			Coordinates coordinates = getSeedCoordinates();
+
+			cout << "x: " << coordinates.x << endl << "y: " << coordinates.y << endl << "trh: " << value << endl;
+
+			if (coordinates.x != -1)
+			{
+				performMerging(coordinates.x, coordinates.y, (int)value);
+			}
+			else
+			{
+				cout << endl << "You have not chosen the seed pixel. Operation has been aborted." << endl;
+			}
+
+			break;
 		default: break;
 	}
 
-	image.display("Morphology preview", false);
-	image.save("morphology.bmp");
+	image.display("Result preview", false);
+	image.save("result.bmp");
 }

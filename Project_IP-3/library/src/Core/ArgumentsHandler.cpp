@@ -16,7 +16,7 @@ ArgumentsHandler::~ArgumentsHandler()
 
 int ArgumentsHandler::convertToInt(std::string option) const
 {
-	for (int i = 0; i < 36; i++)
+	for (int i = 0; i <= 36; i++)
 	{
 		if (options[i] == option) return i;
 	}
@@ -353,7 +353,7 @@ ArgumentsHandler::Processers ArgumentsHandler::get_currentProcesser() const
 	int currentOption = convertToInt(option);
 	if (currentOption < 17) return Processers::ImageProcesser;
 	if (currentOption < 29) return Processers::HistogramProcesser;
-	if (currentOption < 34) return Processers::MorphologicalProcesser;
+	if (currentOption < 36) return Processers::MorphologicalProcesser;
 	return Processers::None;
 }
 
