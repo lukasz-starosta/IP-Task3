@@ -46,8 +46,8 @@ MorphologicalProcesser::Coordinates MorphologicalProcesser::getSeedCoordinates()
 		// Left mouse button
 		if (display.button() & 1 && display.mouse_x() >= 0 && display.mouse_y() >= 0)
 		{
-			coordinates.x = display.mouse_x();
-			coordinates.y = display.mouse_y();
+			coordinates.x = (unsigned short int)display.mouse_x();
+			coordinates.y = (unsigned short int)display.mouse_y();
 			display.close();
 		}
 	}
@@ -101,7 +101,7 @@ void MorphologicalProcesser::processImage()
 
 			if (coordinates.x != -1)
 			{
-				performMerging(coordinates.x, coordinates.y, value);
+				performMerging(coordinates.x, coordinates.y, (int)value);
 			}
 			else
 			{
