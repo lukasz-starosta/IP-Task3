@@ -91,11 +91,18 @@ private:
 			{1, -1, -1},
 			{1, 0, -1},
 			{1, -1, -1}
+			/*{1,0,0},
+			{1,0,0},
+			{1,0,0}*/
+
 		},
 		{
 			{1, 1, 1},
 			{-1, 0, -1},
 			{-1, -1, -1}
+			/*{0,1,1},
+			{0,1,1},
+			{0,1,1}*/
 		},
 		{
 			{-1, -1, 1},
@@ -164,6 +171,7 @@ private:
 	bool checkEquality();
 	void performM5(bool controlRun);
 	void performMerging(unsigned short int seed_x, unsigned short int seed_y, int threshold);
+	void performLabs();
 
 	//Helper methods
 	double getEuclideanDistance(int r1, int g1, int b1, int r2, int b2, int g2);

@@ -1,4 +1,5 @@
 #include "MorphologicalProcesser.h"
+#include <iostream>
 
 void MorphologicalProcesser::performDilation()
 {
@@ -204,7 +205,7 @@ void MorphologicalProcesser::intersection(cimg_library::CImg<unsigned char> refe
 			{
 				for (int channel = 0; channel < image.spectrum(); channel++)
 				{
-					image(x, y, channel) = 0;
+					image(x, y, channel) = 255;
 				}
 			}
 		}
@@ -248,6 +249,69 @@ void MorphologicalProcesser::performM5(bool controlRun)
 	}
 
 	if (controlRun == false && !checkEquality()) performM5(false);
+}
+
+void MorphologicalProcesser::performLabs()
+{
+	cimg_library::CImg<unsigned char> imageCopy = image;
+	cimg_library::CImg<unsigned char> reference = image;
+
+	std::cout << std::endl << "Please choose the seed pixel from the window." << std::endl;
+
+	Coordinates seedPixel = getSeedCoordinates();
+
+	std::cout << "x: " << seedPixel.x << std::endl << "y: " << seedPixel.y << std::endl << "trh: " << value << std::endl;
+
+	bool equal = false;
+
+	cimg_library::CImg<unsigned char> result(width, height, 1, 3, 255);
+	structuringElementVariant = 3;
+
+	result(seedPixel.x, seedPixel.y) = 0;
+
+	while (!equal)
+	{
+		image = result;
+		reference = image;
+		performDilation();
+		result = image;
+		image = imageCopy;
+		complement();
+		intersection(result);
+		//image.display("", false);
+		result = image;
+		equal = true;
+		for (unsigned int x = 0; x < width; x++)
+		{
+			for (unsigned int y = 0; y < height; y++)
+			{
+				for (int channel = 0; channel < image.spectrum(); channel++)
+				{
+					if (image(x, y, channel) != reference(x, y, channel))
+					{
+						equal = false;
+					}
+				}
+			}
+		}
+	}
+
+	for (unsigned int x = 0; x < width; x++)
+	{
+		for (unsigned int y = 0; y < height; y++)
+		{
+			for (int channel = 0; channel < image.spectrum(); channel++)
+			{
+				if (image(x, y, channel) == 0)
+				{
+					imageCopy(x, y, channel) = 0;
+				}
+			}
+		}
+	}
+	//image.display("", false);
+	//imageCopy.display("", false);
+	image = imageCopy;
 }
 
 

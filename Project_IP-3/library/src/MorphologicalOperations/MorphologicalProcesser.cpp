@@ -89,9 +89,11 @@ void MorphologicalProcesser::processImage()
 			break;
 		case hmt:
 			performHitOrMiss();
+			blacken();
 			break;
 		case mvariant:
-			performM5(false);
+			//performM5(false);
+			performLabs();
 			break;
 		case merging:
 
