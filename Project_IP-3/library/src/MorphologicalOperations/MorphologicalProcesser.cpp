@@ -93,7 +93,7 @@ void MorphologicalProcesser::processImage()
 			break;
 		case mvariant:
 			//performM5(false);
-			performLabs();
+			performM2();
 			break;
 		case merging:
 

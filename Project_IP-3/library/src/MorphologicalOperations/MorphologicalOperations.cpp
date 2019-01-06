@@ -234,6 +234,26 @@ bool MorphologicalProcesser::checkEquality()
 	return true;
 }
 
+// Used to check image equality relative to a reference image
+bool MorphologicalProcesser::checkEquality(cimg_library::CImg<unsigned char> *reference)
+{
+	for (unsigned int x = 0; x < width; x++)
+	{
+		for (unsigned int y = 0; y < height; y++)
+		{
+			for (int channel = 0; channel < image.spectrum(); channel++)
+			{
+				if (image(x, y, channel) != (*reference)(x, y, channel))
+				{
+					return false;
+				}
+			}
+		}
+	}
+
+	return true;
+}
+
 //controlRun is used to denote if call of performM5 is for the purpose of checking if it should stop performing operations on the image or a normal run
 void MorphologicalProcesser::performM5(bool controlRun)
 {
@@ -251,16 +271,16 @@ void MorphologicalProcesser::performM5(bool controlRun)
 	if (controlRun == false && !checkEquality()) performM5(false);
 }
 
-void MorphologicalProcesser::performLabs()
+void MorphologicalProcesser::performM2()
 {
 	cimg_library::CImg<unsigned char> imageCopy = image;
-	cimg_library::CImg<unsigned char> reference = image;
+	cimg_library::CImg<unsigned char> reference;
 
 	std::cout << std::endl << "Please choose the seed pixel from the window." << std::endl;
 
 	Coordinates seedPixel = getSeedCoordinates();
 
-	std::cout << "x: " << seedPixel.x << std::endl << "y: " << seedPixel.y << std::endl << "trh: " << value << std::endl;
+	std::cout << "x: " << seedPixel.x << std::endl << "y: " << seedPixel.y << std::endl;
 
 	bool equal = false;
 
@@ -273,29 +293,17 @@ void MorphologicalProcesser::performLabs()
 	{
 		image = result;
 		reference = image;
+		// Image by 4th structuring element
 		performDilation();
 		result = image;
 		image = imageCopy;
 		complement();
 		intersection(result);
-		//image.display("", false);
 		result = image;
-		equal = true;
-		for (unsigned int x = 0; x < width; x++)
-		{
-			for (unsigned int y = 0; y < height; y++)
-			{
-				for (int channel = 0; channel < image.spectrum(); channel++)
-				{
-					if (image(x, y, channel) != reference(x, y, channel))
-					{
-						equal = false;
-					}
-				}
-			}
-		}
+		equal = checkEquality(&reference);
 	}
 
+	// Fill the corresponding pixels in imageCopy with black
 	for (unsigned int x = 0; x < width; x++)
 	{
 		for (unsigned int y = 0; y < height; y++)
@@ -309,8 +317,7 @@ void MorphologicalProcesser::performLabs()
 			}
 		}
 	}
-	//image.display("", false);
-	//imageCopy.display("", false);
+
 	image = imageCopy;
 }
 

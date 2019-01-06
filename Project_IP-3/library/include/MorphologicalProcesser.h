@@ -169,9 +169,10 @@ private:
 	void complement();
 	void intersection(cimg_library::CImg<unsigned char> reference);
 	bool checkEquality();
+	bool checkEquality(cimg_library::CImg<unsigned char> *reference);
 	void performM5(bool controlRun);
 	void performMerging(unsigned short int seed_x, unsigned short int seed_y, int threshold);
-	void performLabs();
+	void performM2();
 
 	//Helper methods
 	double getEuclideanDistance(int r1, int g1, int b1, int r2, int b2, int g2);
